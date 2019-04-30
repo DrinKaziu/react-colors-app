@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import paletteMetaForm from './PaletteMetaForm';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -10,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -62,7 +64,7 @@ class PaletteFormNav extends Component {
   }
 
   render() {
-    const { classes, open, handleSubmit, handleDrawerOpen } = this.props;
+    const { classes, open, handleSubmit, handleDrawerOpen, palettes } = this.props;
     const { newPaletteName } = this.state;
     return (
       <div className={classes.root}>
@@ -88,22 +90,7 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-              <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
-                <TextValidator 
-                  name="newPaletteName"
-                  value={this.state.newPaletteName}
-                  onChange={this.handleChange}
-                  validators={["required", "isPaletteNameUnique"]}
-                  errorMessages={["palette name is required", "palette name already exists"]}
-                />
-                <Button 
-                  variant="contained" 
-                  color="primary"
-                  type="submit"
-                >
-                  Save Palette
-                </Button>
-              </ValidatorForm>
+              <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
               <Link to="/">
                 <Button variant="contained" color="secondary">Go Back</Button>
               </Link>
