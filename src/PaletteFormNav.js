@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import paletteMetaForm from './PaletteMetaForm';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -10,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
@@ -71,7 +70,11 @@ class PaletteFormNav extends Component {
   }
 
   showForm = () => {
-    this.setState({formShowing: true})
+    this.setState({formShowing: true});
+  }
+
+  hideForm = () => {
+    this.setState({formShowing: false});
   }
 
   render() {
@@ -109,7 +112,7 @@ class PaletteFormNav extends Component {
             </Button>
           </div>
         </AppBar>
-        {formShowing && (<PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />)}
+        {formShowing && (<PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} hideForm={this.hideForm}/>)}
       </div>
     )
   }
