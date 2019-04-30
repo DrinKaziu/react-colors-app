@@ -77,13 +77,16 @@ const styles = theme => ({
 });
 
 class NewPaletteForm extends Component {
+  static defaultProps = {
+    maxColors: 20
+  }
   constructor(props) {
     super(props);
     this.state = {
       open: true,
       newColorName: '',
       currentColor: "teal",
-      colors: [{color: 'blue', name: 'blue'}],
+      colors: this.props.palettes[0].colors,
       newPaletteName: ''
     };
   }
@@ -147,9 +150,21 @@ class NewPaletteForm extends Component {
     }));
   }
 
+  clearPalette = () => {
+    this.setState({colors: []})
+  }
+
+  addRandomColor = () => {
+    const allColors = this.props.palettes.map(p => p.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    this.setState({colors: [...this.state.colors, randomColor]});
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, maxColors } = this.props;
     const { open, currentColor, colors, newColorName } = this.state;
+    const paletteIsFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -207,8 +222,21 @@ class NewPaletteForm extends Component {
           <Divider />
           <Typography variant="h4">Design Your Palette</Typography>
           <div>
-            <Button variant="contained" color="secondary">Clear Palette</Button>
-            <Button variant="contained" color="primary">Random Color</Button>
+            <Button 
+              variant="contained" 
+              color="secondary"
+              onClick={this.clearPalette}
+            >
+              Clear Palette
+            </Button>
+            <Button 
+              variant="contained" 
+              color="primary"
+              onClick={this.addRandomColor}
+              disabled={paletteIsFull}
+            >
+              Random Color
+            </Button>
           </div>
           <ChromePicker 
             color={currentColor} 
@@ -226,9 +254,10 @@ class NewPaletteForm extends Component {
               variant="contained" 
               type="submit"
               color="primary" 
-              style={{backgroundColor: currentColor}} 
+              style={{backgroundColor: paletteIsFull ? "grey" : currentColor}} 
+              disabled={paletteIsFull}
             >
-              Add color
+              {paletteIsFull ? "Palette Is Full" : "Add Color"}
             </Button>
           </ValidatorForm>
         </Drawer>
