@@ -39,7 +39,7 @@ const styles = theme => ({
     marginLeft: 0,
   },
   container: {
-    width: '70%',
+    width: '80%',
     height: '80%',
     display: 'flex',
     flexDirection: 'column',
@@ -50,7 +50,8 @@ const styles = theme => ({
     width: '100%'
   },
   button: {
-    width: '50%'
+    width: '50%',
+    fontSize: '11px'
   }
 });
 

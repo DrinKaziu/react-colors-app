@@ -3,16 +3,20 @@ import sizes from './sizes';
 
 export default {
   root: {
-    minHeight: "120vh",
+    height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
     backgroundColor: '#f5c107',
     backgroundImage: `url(${bg})`,
-    overFlow: "scroll"
+    overflow: "scroll"
+  },
+  heading: {
+    fontSize: '2rem'
   },
   container: {
-    width: "70%",
+    width: "60%",
+    marginBottom: '10rem',
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
@@ -32,15 +36,22 @@ export default {
     boxSizing: "border-box",
     width: "100%",
     display: "grid",
-    gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "5%",
+    gridTemplateColumns: "repeat(4, 23%)",
+    gridGap: "3%",
+    [sizes.down('lg')]: {
+      gridTemplateColumns: "repeat(3, 32%)",
+      gridGap: "2.5%",
+      marginBottom: '5rem'
+    },
     [sizes.down('md')]: {
       gridTemplateColumns: "repeat(2, 50%)",
-      gridGap: "2.5%"
+      gridGap: "2.5%",
+      marginBottom: '5rem'
     },
     [sizes.down('xs')]: {
       gridTemplateColumns: "repeat(1, 100%)",
-      gridGap: "1%"
+      gridGap: "1%",
+      marginBottom: '5rem'
     }
   }
 }
