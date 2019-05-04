@@ -1,6 +1,6 @@
 import sizes from './sizes';
 
-const drawerWidth = 400;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {

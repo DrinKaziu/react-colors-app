@@ -1,4 +1,4 @@
-const drawerWidth = 400;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
@@ -39,8 +39,8 @@ const styles = theme => ({
     marginLeft: 0,
   },
   container: {
-    width: '90%',
-    height: '100%',
+    width: '70%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

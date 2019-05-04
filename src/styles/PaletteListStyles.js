@@ -1,5 +1,5 @@
 import bg from './bg.svg';
-// import sizes from './sizes';
+import sizes from './sizes';
 
 export default {
   root: {
@@ -12,7 +12,7 @@ export default {
     overFlow: "scroll"
   },
   container: {
-    width: "50%",
+    width: "70%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
@@ -33,6 +33,14 @@ export default {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "5%"
+    gridGap: "5%",
+    [sizes.down('md')]: {
+      gridTemplateColumns: "repeat(2, 50%)",
+      gridGap: "2.5%"
+    },
+    [sizes.down('xs')]: {
+      gridTemplateColumns: "repeat(1, 100%)",
+      gridGap: "1%"
+    }
   }
 }
